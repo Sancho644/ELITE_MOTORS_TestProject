@@ -6,10 +6,18 @@ namespace Components
     public class LayerCheckComponent : MonoBehaviour
     {
         [SerializeField] private LayerMask layer;
-        [SerializeField] public bool isTouchingLayer;
-        [SerializeField] public Collider2D targetCollider;
+        [SerializeField] private bool isTouchingLayer;
+        [SerializeField] private Collider2D targetCollider;
 
         public bool IsTouchingLayer => isTouchingLayer;
+
+        private void Awake()
+        {
+            if (targetCollider == null)
+            {
+                targetCollider = GetComponent<Collider2D>();
+            }
+        }
 
         private void OnTriggerStay2D(Collider2D collision)
         {
